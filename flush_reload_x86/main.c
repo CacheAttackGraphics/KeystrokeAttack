@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
     unsigned int targetCidxOffsetEnd = TARGET_CIDX_OFFSET;
     if (argc < 7) {
         fprintf(stderr, "Usage: %s affinity logFile libBegin cidxBegin libEnd cidxEnd\n", argv[0]);
-        exit(0);
+        exit(1);
     }
 
     affinity = atoi(argv[1]);

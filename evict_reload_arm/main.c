@@ -137,20 +137,17 @@ int main(int argc, char** argv) {
     char targetLibNameEnd[100] = "/system/lib/libskia.so";
     unsigned int targetCidxOffsetEnd = 0xece24 / 64;
 
-	if (argc > 1) {
-	    affinity = atoi(argv[1]);
+    if (argc < 7) {
+        fprintf(stderr, "Usage: %s affinity logFile libBegin cidxBegin libEnd cidxEnd\n", argv[0]);
+        exit(1);
     }
-    if (argc > 2) {
-        strcpy(log_file, argv[2]);
-    }
-    if (argc > 4) {
-        strcpy(targetLibName, argv[3]);
-        sscanf(argv[4], "%x", &targetCidxOffset);
-    }
-    if (argc > 6) {
-        strcpy(targetLibNameEnd, argv[5]);
-        sscanf(argv[6], "%x", &targetCidxOffsetEnd);
-    }
+
+	affinity = atoi(argv[1]);
+    strcpy(log_file, argv[2]);
+    strcpy(targetLibName, argv[3]);
+    sscanf(argv[4], "%x", &targetCidxOffset);
+    strcpy(targetLibNameEnd, argv[5]);
+    sscanf(argv[6], "%x", &targetCidxOffsetEnd);
     fprintf(stderr, "%s %#x\n", targetLibName, targetCidxOffset);
     fprintf(stderr, "%s %#x\n", targetLibNameEnd, targetCidxOffsetEnd);
 
